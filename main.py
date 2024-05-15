@@ -56,12 +56,20 @@ class AccountsDB:
             self.accounts.append(Account(name, src, isProtected, passw))
             #saving to file automatically when change is made (account created)
             self.saveToFile()
+            #create a folder for the account
+            #TODO: check if the folder really doesnt exist!
+            os.mkdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), src))
+            return True
+        return False
 
     def isNameFree(self, name):
         for account in self.accounts:
             if account.getName() == name:
                 return False
         return True
+    
+    def getAccounts(self):
+        return self.accounts
 
 
 
@@ -70,6 +78,8 @@ class AccountsDB:
 def main():
     accounts = AccountsDB()
 
+    for account in accounts.getAccounts():
+        print(account.getObject())
 
 
 
