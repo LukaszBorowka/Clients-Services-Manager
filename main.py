@@ -2,6 +2,9 @@ import json
 import os
 
 
+ACCOUNT = None
+
+
 class Account:
     def __init__(self, name, src, isProtected, passw):
         self.name = name
@@ -70,16 +73,40 @@ class AccountsDB:
     
     def getAccounts(self):
         return self.accounts
+    
+    def getAccount(self, name):
+        for account in self.accounts:
+            if name == account.getName():
+                return account
+        return 0
+
+
+
+
 
 
 
 
 
 def main():
+    _ACCOUNT = None
     accounts = AccountsDB()
 
-    for account in accounts.getAccounts():
-        print(account.getObject())
+    while not _ACCOUNT:
+        print("Choose account")
+        for account in accounts.getAccounts():
+            print(account.getName())
+        name = input("Enter name: ")
+        if not accounts.isNameFree(name):
+            if input("Enter password: ") == accounts.getAccount(name).getPassw():
+                _ACCOUNT = accounts.getAccount(name)
+                break
+            print("Invalid password.")
+            continue
+        print("Invalid name.")
+
+    print(f"You're logged in as {_ACCOUNT.getName()}.")
+        
 
 
 
