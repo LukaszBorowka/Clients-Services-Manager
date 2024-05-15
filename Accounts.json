@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Account 1",
+    "src": "Account-1",
+    "isProtected": false,
+    "passw": ""
+  },
+  {
+    "name": "Account 2",
+    "src": "Account-2",
+    "isProtected": true,
+    "passw": "1234"
+  },
+  {
+    "name": "Account 3",
+    "src": "Account-3",
+    "isProtected": false,
+    "passw": ""
+  },
+  {
+    "name": "Account 4",
+    "src": "Account-4",
+    "isProtected": true,
+    "passw": "ABCD"
+  }
+]
