@@ -1,8 +1,6 @@
+import tkinter as tk
 import json
 import os
-
-
-ACCOUNT = None
 
 
 class Account:
@@ -60,7 +58,7 @@ class AccountsDB:
             #saving to file automatically when change is made (account created)
             self.saveToFile()
             #create a folder for the account
-            #TODO: check if the folder really doesnt exist!
+            #TODO: check if the folder doesnt already exist!
             os.mkdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), src))
             return True
         return False
@@ -83,29 +81,40 @@ class AccountsDB:
 
 
 
+# #######################################################
+class LoginForm(tk.Tk):
+    def __init__(self):
+        super().__init__()
+
+        self.title('Login to Clients & Services Manager')
+        self.geometry('500x400')
+        self.resizable(False, False)
+
+        self.header = tk.Label(self, text='Login to CSM', font=('Lato', 24))
+        self.header.pack(pady=16)
 
 
 
 
 
-def main():
-    _ACCOUNT = None
-    accounts = AccountsDB()
+# def main():
+#     _ACCOUNT = None
+#     accounts = AccountsDB()
 
-    while not _ACCOUNT:
-        print("Choose account")
-        for account in accounts.getAccounts():
-            print(account.getName())
-        name = input("Enter name: ")
-        if not accounts.isNameFree(name):
-            if input("Enter password: ") == accounts.getAccount(name).getPassw():
-                _ACCOUNT = accounts.getAccount(name)
-                break
-            print("Invalid password.")
-            continue
-        print("Invalid name.")
+#     while not _ACCOUNT:
+#         print("Choose account")
+#         for account in accounts.getAccounts():
+#             print(account.getName())
+#         name = input("Enter name: ")
+#         if not accounts.isNameFree(name):
+#             if input("Enter password: ") == accounts.getAccount(name).getPassw():
+#                 _ACCOUNT = accounts.getAccount(name)
+#                 break
+#             print("Invalid password.")
+#             continue
+#         print("Invalid name.")
 
-    print(f"You're logged in as {_ACCOUNT.getName()}.")
+#     print(f"You're logged in as {_ACCOUNT.getName()}.")
         
 
 
@@ -114,4 +123,6 @@ def main():
     
 
 if __name__ == "__main__":
-    main()
+    # main()
+    loginForm = LoginForm()
+    loginForm.mainloop()
